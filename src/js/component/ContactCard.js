@@ -10,7 +10,7 @@ export const ContactCard = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
-
+	console.log("props.contact", props.contact);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
@@ -19,7 +19,7 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<Link to="/edit">
+						<Link to={{ pathname: `/edit/${props.index}`, state: props.index }}>
 							<button className="btn">
 								<i className="fas fa-pencil-alt mr-3" />
 							</button>
@@ -61,7 +61,8 @@ export const ContactCard = props => {
 ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
-	contact: PropTypes.object //This is what ties to contact={item} in Contacts.js
+	contact: PropTypes.object, //This is what ties to contact={item} in Contacts.js
+	index: PropTypes.number
 };
 
 /**

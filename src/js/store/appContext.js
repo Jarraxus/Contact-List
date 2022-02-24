@@ -22,7 +22,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			state.actions.getData();
+			state.actions.getData(); // runs getData in flux.js on page's first load
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
@@ -38,7 +38,7 @@ const injectContext = PassedComponent => {
 		// on the state of this component
 		return (
 			<Context.Provider value={state}>
-				<PassedComponent {...props} />
+				<PassedComponent {...props} /> {/*Passing props*/}
 			</Context.Provider>
 		);
 	};
