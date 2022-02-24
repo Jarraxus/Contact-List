@@ -59,7 +59,7 @@ export const ContactCard = props => {
 ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
-	contact: PropTypes.object //This is what ties to contact={item} in Contacts
+	contact: PropTypes.object //This is what ties to contact={item} in Contacts.js
 };
 
 /**

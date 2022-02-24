@@ -25,7 +25,7 @@ export const Contacts = () => {
 								<ContactCard
 									onDelete={() => setState({ showModal: true })}
 									key={index}
-									contact={item} //This is what ties to the props in ContactCard
+									contact={item} //This is what ties to the props in ContactCard.js
 								/>
 							);
 						})}
