@@ -26,14 +26,18 @@ export const Modal = props => {
 						)}
 					</div>
 					<div className="modal-body">
-						<p>Warning: unknown consequences after this point... Kidding!</p>
+						<p>Warning: This will permanently delete the contact!</p>
 					</div>
 					<div className="modal-footer">
 						<button type="button" className="btn btn-primary" onClick={() => props.onClose()}>
-							Oh no!
+							Cancel
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
-							Do it!
+						<button
+							type="button"
+							className="btn btn-secondary"
+							onClick={() => props.onClose()}
+							data-dismiss="modal">
+							Confirm Delete
 						</button>
 					</div>
 				</div>

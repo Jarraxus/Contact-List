@@ -6,20 +6,26 @@ const getState = ({ getStore, setStore }) => {
 		},
 		actions: {
 			getData: () => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jarraxus")
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jarraxus") // fetching API data
 					.then(response => {
 						var contentType = response.headers.get("content-type");
 						if (contentType && contentType.includes("application/json")) {
-							return response.json();
+							return response.json(); // converting fetched data to Json
 						}
 						throw new TypeError("Sorry, There's no JSON here!");
 					})
 					.then(myAgenda => {
-						setStore({ agenda: myAgenda });
-						console.log("myAgenda ", myAgenda);
+						// setting "myAgenda" to match the Jsonified response
+						setStore({ agenda: myAgenda }); // setting agenda as myAgenda
+						console.log("myAgenda ", myAgenda); //logging all current API contacts
 					})
-					.catch(error => console.log(error));
-			}
+					.catch(error => console.log(error)); // logging any API errors
+			},
+			addContact: () => {},
+
+			deleteContact: () => {},
+
+			editContact: () => {}
 
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
