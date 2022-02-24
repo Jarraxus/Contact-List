@@ -5,7 +5,7 @@ import MikePhoto from "../../img/m101.jpg";
 import { Contacts } from "../views/Contacts";
 import { Context } from "../store/appContext";
 
-export const ContactCard = () => {
+export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		//initialize state here
@@ -26,10 +26,10 @@ export const ContactCard = () => {
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
-					<label className="name lead">{store.agenda.full_name}</label>
+					<label className="name lead">{props.contact.full_name}</label>
 					<br />
 					<i className="fas fa-map-marker-alt text-muted mr-3" />
-					<span className="text-muted">5842 Hillcrest Rd</span>
+					<span className="text-muted">{props.contact.address}</span>
 					<br />
 					<span
 						className="fa fa-phone fa-fw text-muted mr-3"
@@ -37,7 +37,7 @@ export const ContactCard = () => {
 						title=""
 						data-original-title="(870) 288-4149"
 					/>
-					<span className="text-muted small">(870) 288-4149</span>
+					<span className="text-muted small">{props.contact.phone}</span>
 					<br />
 					<span
 						className="fa fa-envelope fa-fw text-muted mr-3"
@@ -45,7 +45,7 @@ export const ContactCard = () => {
 						data-original-title=""
 						title=""
 					/>
-					<span className="text-muted small text-truncate">mike.ana@example.com</span>
+					<span className="text-muted small text-truncate">{props.contact.email}</span>
 				</div>
 			</div>
 		</li>
@@ -59,7 +59,7 @@ export const ContactCard = () => {
 ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
-	agenda: PropTypes.object
+	contact: PropTypes.object //This is what ties to contact={item} in Contacts
 };
 
 /**
