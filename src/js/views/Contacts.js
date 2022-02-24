@@ -33,7 +33,7 @@ export const Contacts = () => {
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<Modal index={index} show={state.showModal} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
 };

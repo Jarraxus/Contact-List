@@ -23,7 +23,17 @@ const getState = ({ getStore, setStore }) => {
 			},
 			addContact: () => {},
 
-			deleteContact: () => {},
+			deleteContact: (i) => {
+				let tempArray = [];
+				const contactList = getStore.agenda;
+				tempArray = contactList.filter(item, index => {
+					if (index != i) {
+						return item;
+					}
+				})
+				setStore ({ agenda: tempArray})
+				
+			},
 
 			editContact: () => {}
 
