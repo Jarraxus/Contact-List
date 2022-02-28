@@ -1,21 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
-import { withRouter, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import MikePhoto from "../../img/m101.jpg";
-import { Contacts } from "../views/Contacts";
+import cageface from "../../img/cageface.jpg";
 import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
-	const [state, setState] = useState({
-		//initialize state here
-	});
-	console.log("props.contact", props.contact);
+
+	// console.log("props.contact", props.contact);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
-				<div className="col-12 col-sm-6 col-md-3 px-0">
-					<img src={MikePhoto} alt="Mike Anamendolla" className="rounded-circle mx-auto d-block img-fluid" />
+				<div className="col-12 col-sm-6 col-md-2 px-0">
+					<img src={cageface} alt="Mike Anamendolla" className="rounded-circle mx-auto d-block img-fluid" />
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const EditContact = props => {
