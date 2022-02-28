@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const AddContact = () => {
@@ -9,29 +9,6 @@ export const AddContact = () => {
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
 
-	const createNew = (na, em, ad, ph) => {
-		fetch(`https://assets.breatheco.de/apis/fake/contact/`, {
-			method: "POST",
-			body: JSON.stringify({
-				full_name: na,
-				email: em,
-				agenda_slug: "jarraxus",
-				address: ad,
-				phone: ph
-			}), // data can be a `string` or  an {object} which comes from somewhere further above in our application
-			headers: {
-				"Content-Type": "application/json"
-			}
-		}) // fetching API data
-			.then(response => {
-				actions.getData();
-				return response.json(); // converting fetched data to Json
-			})
-			.then(data => {
-				console.log("data is ", data);
-			})
-			.catch(error => console.log(error)); // logging any API errors
-	};
 	return (
 		<div className="container">
 			<div>
@@ -77,8 +54,8 @@ export const AddContact = () => {
 						<button
 							type="button"
 							className="btn btn-primary form-control"
-							onClick={async () => {
-								createNew(name, email, phone, address);
+							onClick={() => {
+								actions.addNewContact(name, email, phone, address);
 							}}>
 							save
 						</button>

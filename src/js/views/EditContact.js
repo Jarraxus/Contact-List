@@ -11,31 +11,6 @@ export const EditContact = props => {
 	const [phone, setPhone] = useState(data.phone);
 	const [address, setAddress] = useState(data.address);
 
-	console.log("THE DATA BE ", data);
-
-	const createEdit = (na, em, ad, ph) => {
-		fetch(`https://assets.breatheco.de/apis/fake/contact/${data.id}`, {
-			method: "PUT",
-			body: JSON.stringify({
-				full_name: na,
-				email: em,
-				agenda_slug: "jarraxus",
-				address: ad,
-				phone: ph
-			}), // data can be a `string` or  an {object} which comes from somewhere further above in our application
-			headers: {
-				"Content-Type": "application/json"
-			}
-		}) // fetching API data
-			.then(response => {
-				actions.getData();
-				return response.json(); // converting fetched data to Json
-			})
-			.then(data => {
-				console.log("data is ", data);
-			})
-			.catch(error => console.log(error)); // logging any API errors
-	};
 	return (
 		<div className="container">
 			<div>
@@ -85,8 +60,8 @@ export const EditContact = props => {
 						<button
 							type="button"
 							className="btn btn-primary form-control"
-							onClick={async () => {
-								createEdit(name, email, phone, address);
+							onClick={() => {
+								actions.editContact(name, email, phone, address, data.id);
 							}}>
 							save
 						</button>
