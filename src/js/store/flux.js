@@ -22,20 +22,6 @@ const getState = ({ getStore, setStore }) => {
 					})
 					.catch(error => console.log(error)); // logging any API errors
 			},
-			addContact: () => {},
-
-			deleteContact: i => {
-				let tempArray = [];
-				const contactList = getStore.agenda;
-				tempArray = contactList.filter(item, index => {
-					if (index != i) {
-						return item;
-					}
-				});
-				setStore({ agenda: tempArray });
-			},
-
-			editContact: () => {},
 
 			setTempIndex: id => {
 				setStore({ tempIndex: id });

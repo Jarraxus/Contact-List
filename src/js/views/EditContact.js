@@ -1,36 +1,96 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const EditContact = props => {
 	let data = props.location.state;
-	const { store, action } = useContext(Context);
-	let contact = store.agenda[data];
+	const { store, actions } = useContext(Context);
+	const [name, setName] = useState(data.full_name);
+	const [email, setEmail] = useState(data.email);
+	const [phone, setPhone] = useState(data.phone);
+	const [address, setAddress] = useState(data.address);
+
+	console.log("THE DATA BE ", data);
+
+	const createEdit = (na, em, ad, ph) => {
+		fetch(`https://assets.breatheco.de/apis/fake/contact/${data.id}`, {
+			method: "PUT",
+			body: JSON.stringify({
+				full_name: na,
+				email: em,
+				agenda_slug: "jarraxus",
+				address: ad,
+				phone: ph
+			}), // data can be a `string` or  an {object} which comes from somewhere further above in our application
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}) // fetching API data
+			.then(response => {
+				actions.getData();
+				return response.json(); // converting fetched data to Json
+			})
+			.then(data => {
+				console.log("data is ", data);
+			})
+			.catch(error => console.log(error)); // logging any API errors
+	};
 	return (
 		<div className="container">
 			<div>
-				<h1 className="text-center mt-5">Edit an existing contact</h1>
+				<h1 className="text-center mt-5">Add a new contact</h1>
 				<form>
 					<div className="form-group">
 						<label>Full Name</label>
-						<input type="text" className="form-control" placeholder={contact.full_name} />
+						<input
+							value={name}
+							type="text"
+							className="form-control"
+							placeholder="Full Name"
+							onChange={e => setName(e.target.value)}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>
-						<input type="email" className="form-control" placeholder={contact.email} />
+						<input
+							value={email}
+							type="email"
+							className="form-control"
+							placeholder="Enter email"
+							onChange={e => setEmail(e.target.value)}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Phone</label>
-						<input type="phone" className="form-control" placeholder={contact.phone} />
+						<input
+							value={phone}
+							type="phone"
+							className="form-control"
+							placeholder="Enter phone"
+							onChange={e => setPhone(e.target.value)}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Address</label>
-						<input type="text" className="form-control" placeholder={contact.address} />
+						<input
+							value={address}
+							type="text"
+							className="form-control"
+							placeholder="Enter address"
+							onChange={e => setAddress(e.target.value)}
+						/>
 					</div>
-					<button type="button" className="btn btn-primary form-control">
-						update contact
-					</button>
+					<Link to="/">
+						<button
+							type="button"
+							className="btn btn-primary form-control"
+							onClick={async () => {
+								createEdit(name, email, phone, address);
+							}}>
+							save
+						</button>
+					</Link>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts
 					</Link>
@@ -41,5 +101,5 @@ export const EditContact = props => {
 };
 
 EditContact.propTypes = {
-	location: PropTypes.number
+	location: PropTypes.object
 };
