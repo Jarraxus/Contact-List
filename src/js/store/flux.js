@@ -2,7 +2,8 @@ const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
 			//Your data structures, A.K.A Entities
-			agenda: []
+			agenda: [],
+			tempIndex: null
 		},
 		actions: {
 			getData: () => {
@@ -23,19 +24,22 @@ const getState = ({ getStore, setStore }) => {
 			},
 			addContact: () => {},
 
-			deleteContact: (i) => {
+			deleteContact: i => {
 				let tempArray = [];
 				const contactList = getStore.agenda;
 				tempArray = contactList.filter(item, index => {
 					if (index != i) {
 						return item;
 					}
-				})
-				setStore ({ agenda: tempArray})
-				
+				});
+				setStore({ agenda: tempArray });
 			},
 
-			editContact: () => {}
+			editContact: () => {},
+
+			setTempIndex: id => {
+				setStore({ tempIndex: id });
+			}
 
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()

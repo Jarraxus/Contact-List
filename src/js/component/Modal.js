@@ -8,6 +8,21 @@ export const Modal = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
+
+	const deleteContact = id => {
+		fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
+			method: "DELETE"
+		}) // fetching API data
+			.then(response => {
+				actions.getData();
+				return response.json(); // converting fetched data to Json
+			})
+			.then(data => {
+				console.log("data is ", data);
+			})
+			.catch(error => console.log(error)); // logging any API errors
+	};
+
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">
@@ -39,7 +54,7 @@ export const Modal = props => {
 							className="btn btn-secondary"
 							onClick={() => {
 								props.onClose();
-								actions.deleteContact();
+								deleteContact(store.tempIndex);
 							}}
 							data-dismiss="modal">
 							Confirm Delete
@@ -57,7 +72,7 @@ export const Modal = props => {
 Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
-	show: PropTypes.bool.
+	show: PropTypes.bool,
 	index: PropTypes.number
 };
 
