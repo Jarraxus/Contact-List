@@ -6,8 +6,8 @@ import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
-
 	// console.log("props.contact", props.contact);
+
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
@@ -25,7 +25,7 @@ export const ContactCard = props => {
 							className="btn"
 							onClick={() => {
 								props.onDelete();
-								actions.setTempIndex(props.contact.id);
+								actions.setTempIndex(props.contact.id); // setting the tempIndex with this items ID, then deleting from agenda on flux.js
 							}}>
 							<i className="fas fa-trash-alt" />
 						</button>

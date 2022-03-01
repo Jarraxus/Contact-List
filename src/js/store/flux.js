@@ -15,8 +15,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						}
 						throw new TypeError("Sorry, There's no JSON here!");
 					})
-					.then(myAgenda => {
-						// setting "myAgenda" to match the Jsonified response
+					.then(myAgenda => { // setting "myAgenda" to match the Jsonified response
 						setStore({ agenda: myAgenda }); // setting agenda as myAgenda
 						console.log("myAgenda ", myAgenda); //logging all current API contacts
 					})
@@ -42,7 +41,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						return response.json(); // converting fetched data to Json
 					})
 					.then(data => {
-						console.log("data is ", data);
+						// console.log("data is ", data);
 					})
 					.catch(error => console.log(error)); // logging any API errors
 			},
@@ -66,7 +65,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						return response.json(); // converting fetched data to Json
 					})
 					.then(data => {
-						console.log("data is ", data);
+						// console.log("data is ", data);
 					})
 					.catch(error => console.log(error)); // logging any API errors
 			},
@@ -79,7 +78,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						return response.json(); // converting fetched data to Json
 					})
 					.then(data => {
-						console.log("data is ", data);
+						// console.log("data is ", data);
 					})
 					.catch(error => console.log(error)); // logging any API errors
 			},
@@ -87,9 +86,6 @@ const getState = ({ getStore, setStore, getActions }) => {
 				setStore({ tempIndex: id });
 			}
 		}
-
-		//(Arrow) Functions that update the Store
-		// Remember to use the scope: scope.state.store & scope.setState()
 	};
 };
 

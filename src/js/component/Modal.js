@@ -13,7 +13,7 @@ export const Modal = props => {
 						<h5 className="modal-title">Are you sure?</h5>
 						{props.onClose ? (
 							<button
-								onClick={() => props.onClose()}
+								onClick={() => props.onClose()} // closes the Modal
 								type="button"
 								className="close"
 								data-dismiss="modal"
@@ -35,8 +35,8 @@ export const Modal = props => {
 							type="button"
 							className="btn btn-secondary"
 							onClick={() => {
-								props.onClose();
-								actions.deleteContact(store.tempIndex);
+								props.onClose(); // closes the Modal
+								actions.deleteContact(store.tempIndex); // executing deleteContact on flux.js
 							}}
 							data-dismiss="modal">
 							Confirm Delete
